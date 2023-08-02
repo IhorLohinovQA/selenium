@@ -4,17 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-import java.time.Duration;
 import java.util.List;
 
-public class SeleniumDevHomePage {
+public class SeleniumDevHomePage extends AbstractPage {
     private static final String HOMEPAGE_URL = "https://www.selenium.dev/";
-    private final WebDriver driver;
+
     @FindBy (xpath = "//*[@id=\"docsearch\"]/button")
     private WebElement searchInput;
 
@@ -25,8 +23,7 @@ public class SeleniumDevHomePage {
     private List<WebElement> searchResults;
 
     public SeleniumDevHomePage (WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public SeleniumDevHomePage openPage() {
@@ -37,7 +34,7 @@ public class SeleniumDevHomePage {
     public SeleniumDevHomePage searchForTerms(String term) {
         searchInput.click();
         enterValue.sendKeys(term);
-        new WebDriverWait(driver, Duration.ofSeconds(10))
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("docsearch-item-0")));
         return this;
     }
