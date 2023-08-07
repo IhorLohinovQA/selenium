@@ -39,6 +39,7 @@ public class SeleniumDevHomePage extends AbstractPage {
         return this;
     }
 
+
     public int countSearchResults() {
         return searchResults.size();
     }
