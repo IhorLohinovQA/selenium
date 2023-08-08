@@ -11,7 +11,7 @@ public abstract class AbstractPage {
 
     protected abstract AbstractPage openPage();
 
-    protected final Duration WAIT_TIMEOUT_SECONDS = Duration.ofSeconds(20);
+    protected final Duration WAIT_TIMEOUT_SECONDS = Duration.ofSeconds(10);
 
     protected AbstractPage (WebDriver driver) {
         this.driver = driver;
